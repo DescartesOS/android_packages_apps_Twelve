@@ -4,5 +4,18 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <!-- OxygenOS / BitChord Palette -->
+    <color name="oxygen_red">#EB0029</color>
+    <color name="oxygen_red_variant">#FF1A3C</color>
+    <color name="oxygen_red_container">#3D000A</color>
+    <color name="oxygen_on_red">#FFFFFF</color>
 
+    <!-- Glass & Acrylic Surfaces -->
+    <color name="oxygen_glass_background">#E61A1C24</color>
+    <color name="oxygen_glass_stroke">#25FFFFFF</color>
+    <color name="oxygen_glass_pill">#2A2E3D</color>
+
+    <!-- MiniPlayer -->
+    <color name="miniplayer_pill_background">#EE1A1C26</color>
+    <color name="miniplayer_pill_stroke">#33FFFFFF</color>
 </resources>

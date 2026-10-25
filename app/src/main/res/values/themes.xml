@@ -90,12 +90,12 @@
     </style>
 
     <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary.Marker" parent="">
-        <item name="android:layout_width">8dp</item>
-        <item name="android:layout_height">8dp</item>
+        <item name="android:layout_width">7dp</item>
+        <item name="android:layout_height">7dp</item>
         <item name="android:layout_gravity">bottom|center_horizontal</item>
         <item name="android:src">@drawable/now_playing_marker</item>
         <item name="android:visibility">gone</item>
-        <item name="tint">?attr/colorPrimary</item>
+        <item name="tint">@color/oxygen_red</item>
     </style>
 
     <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3Expressive.Button.IconButton.Tonal">

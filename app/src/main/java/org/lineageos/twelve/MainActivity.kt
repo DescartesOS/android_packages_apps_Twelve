@@ -82,14 +82,31 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 WindowInsetsCompat.Type.systemBars()
             )
 
-            nowPlayingBar.setContentPadding(
-                insets.left,
-                0,
-                insets.right,
-                systemBarsInsets.bottom,
-            )
+            val density = resources.displayMetrics.density
+            val horizontalMargin = (14 * density).toInt()
+            val bottomMargin = systemBarsInsets.bottom + (10 * density).toInt()
 
-            // This translates to bottom padding + now playing bar height
+            val lp = nowPlayingBar.layoutParams as? FrameLayout.LayoutParams
+            if (lp != null) {
+                val newStart = insets.left + horizontalMargin
+                val newEnd = insets.right + horizontalMargin
+                if (lp.leftMargin != newStart || lp.rightMargin != newEnd || lp.bottomMargin != bottomMargin) {
+                    lp.leftMargin = newStart
+                    lp.rightMargin = newEnd
+                    lp.bottomMargin = bottomMargin
+                    nowPlayingBar.layoutParams = lp
+                }
+            }
+
+            nowPlayingBar.setContentPadding(0, 0, 0, 0)
+
+            val bottomClearance = when (nowPlayingBar.isVisible) {
+                true -> (nowPlayingBar.layoutParams as? FrameLayout.LayoutParams)?.let {
+                    nowPlayingBar.measuredHeight + it.bottomMargin + (8 * density).toInt()
+                } ?: (nowPlayingBar.measuredHeight + insets.bottom)
+                false -> insets.bottom
+            }
+
             WindowInsetsCompat.Builder(windowInsets)
                 .setInsets(
                     WindowInsetsCompat.Type.systemBars(),
@@ -97,10 +114,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         insets.left,
                         insets.top,
                         insets.right,
-                        when (nowPlayingBar.isVisible) {
-                            true -> nowPlayingBar.measuredHeight
-                            false -> insets.bottom
-                        }
+                        bottomClearance
                     )
                 )
                 .build()
@@ -117,6 +131,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         nowPlayingBar.setOnPlayPauseClickListener {
             nowPlayingViewModel.togglePlayPause()
+        }
+
+        nowPlayingBar.setOnNextClickListener {
+            nowPlayingViewModel.seekToNext()
         }
 
         lifecycleScope.launch {

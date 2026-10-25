@@ -480,6 +480,8 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
 
                         currentTimestampTextView.text =
                             TimestampFormatter.formatTimestampMillis(currentPositionMs)
+                        durationTimestampTextView.text =
+                            TimestampFormatter.formatTimestampMillis(durationMs)
                     }
                 }
 

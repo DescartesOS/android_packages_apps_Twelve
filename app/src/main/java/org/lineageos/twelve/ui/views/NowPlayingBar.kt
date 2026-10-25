@@ -8,6 +8,7 @@ package org.lineageos.twelve.ui.views
 import android.content.Context
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.AttrRes
@@ -30,6 +31,7 @@ class NowPlayingBar @JvmOverloads constructor(
     private val albumTitleTextView by lazy { findViewById<TextView>(R.id.albumTitleTextView) }
     private val circularProgressIndicator by lazy { findViewById<CircularProgressIndicator>(R.id.circularProgressIndicator) }
     private val playPauseMaterialButton by lazy { findViewById<MaterialButton>(R.id.playPauseMaterialButton) }
+    private val nextTrackMaterialButton by lazy { findViewById<MaterialButton?>(R.id.nextTrackMaterialButton) }
     private val thumbnailImageView by lazy { findViewById<ImageView>(R.id.thumbnailImageView) }
     private val titleTextView by lazy { findViewById<TextView>(R.id.titleTextView) }
 
@@ -37,21 +39,33 @@ class NowPlayingBar @JvmOverloads constructor(
         setCardBackgroundColor(
             MaterialColors.getColorStateList(
                 context,
-                com.google.android.material.R.attr.colorSurfaceContainer,
+                com.google.android.material.R.attr.colorSurfaceContainerHigh,
                 cardBackgroundColor,
             )
         )
-        cardElevation = 0f
-        radius = 0f
-        strokeWidth = 0
+        val density = context.resources.displayMetrics.density
+        cardElevation = 6f * density
+        radius = 28f * density
+        strokeWidth = (1.2f * density).toInt()
+        setStrokeColor(
+            MaterialColors.getColorStateList(
+                context,
+                com.google.android.material.R.attr.colorOutlineVariant,
+                cardForegroundColor,
+            )
+        )
 
         inflate(context, R.layout.now_playing_bar, this)
 
+        titleTextView.isSelected = true
         circularProgressIndicator.min = 0
     }
 
     fun setOnPlayPauseClickListener(l: OnClickListener?) =
         playPauseMaterialButton.setOnClickListener(l)
+
+    fun setOnNextClickListener(l: OnClickListener?) =
+        nextTrackMaterialButton?.setOnClickListener(l)
 
     fun updateIsPlaying(isPlaying: Boolean) {
         playPauseMaterialButton.setIconResource(
