@@ -18,4 +18,24 @@
     <!-- MiniPlayer -->
     <color name="miniplayer_pill_background">#EE1A1C26</color>
     <color name="miniplayer_pill_stroke">#33FFFFFF</color>
+
+    <!-- Material 3 Expressive Settings Icon Badges (Ghosuto Palette) -->
+    <color name="badge_indigo_container">#252C4D</color>
+    <color name="badge_indigo_icon">#818CF8</color>
+    <color name="badge_teal_container">#163832</color>
+    <color name="badge_teal_icon">#34D399</color>
+    <color name="badge_purple_container">#381D4C</color>
+    <color name="badge_purple_icon">#C084FC</color>
+    <color name="badge_red_container">#441A22</color>
+    <color name="badge_red_icon">#F87171</color>
+    <color name="badge_amber_container">#3D2912</color>
+    <color name="badge_amber_icon">#FBBF24</color>
+    <color name="badge_orange_container">#3D1E10</color>
+    <color name="badge_orange_icon">#FB923C</color>
+    <color name="badge_cyan_container">#143042</color>
+    <color name="badge_cyan_icon">#38BDF8</color>
+    <color name="badge_pink_container">#3D1630</color>
+    <color name="badge_pink_icon">#F472B6</color>
+    <color name="badge_blue_container">#1A2D4C</color>
+    <color name="badge_blue_icon">#60A5FA</color>
 </resources>

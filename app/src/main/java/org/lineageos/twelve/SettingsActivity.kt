@@ -32,6 +32,9 @@ import kotlinx.coroutines.launch
 import org.lineageos.twelve.ext.ENABLE_OFFLOAD_KEY
 import org.lineageos.twelve.ext.SKIP_SILENCE_KEY
 import org.lineageos.twelve.ext.setOffset
+import org.lineageos.twelve.ui.preferences.ExpressivePreference
+import org.lineageos.twelve.ui.preferences.ExpressiveSwitchPreference
+import org.lineageos.twelve.ui.preferences.SegmentedCardHelper
 import org.lineageos.twelve.viewmodels.SettingsViewModel
 import kotlin.reflect.safeCast
 
@@ -133,7 +136,7 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
                 val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
                 updatePadding(
-                    bottom = insets.bottom,
+                    bottom = insets.bottom + (20 * resources.displayMetrics.density).toInt(),
                     left = insets.left,
                     right = insets.right,
                 )
@@ -152,6 +155,41 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             super.onCreatePreferences(savedInstanceState, rootKey)
+
+            findPreference<ExpressiveSwitchPreference>("fullscreen_mode")?.apply {
+                badgeContainerColorRes = R.color.badge_indigo_container
+                badgeIconColorRes = R.color.badge_indigo_icon
+            }
+            findPreference<ExpressiveSwitchPreference>(ENABLE_OFFLOAD_KEY)?.apply {
+                badgeContainerColorRes = R.color.badge_teal_container
+                badgeIconColorRes = R.color.badge_teal_icon
+            }
+            findPreference<ExpressiveSwitchPreference>("enable_float_output")?.apply {
+                badgeContainerColorRes = R.color.badge_purple_container
+                badgeIconColorRes = R.color.badge_purple_icon
+            }
+            findPreference<ExpressiveSwitchPreference>("stop_playback_on_task_removed")?.apply {
+                badgeContainerColorRes = R.color.badge_red_container
+                badgeIconColorRes = R.color.badge_red_icon
+            }
+            findPreference<ExpressiveSwitchPreference>(SKIP_SILENCE_KEY)?.apply {
+                badgeContainerColorRes = R.color.badge_amber_container
+                badgeIconColorRes = R.color.badge_amber_icon
+            }
+            findPreference<ExpressivePreference>("reset_local_stats")?.apply {
+                badgeContainerColorRes = R.color.badge_orange_container
+                badgeIconColorRes = R.color.badge_orange_icon
+            }
+            findPreference<ExpressivePreference>("rescan_media_store")?.apply {
+                badgeContainerColorRes = R.color.badge_cyan_container
+                badgeIconColorRes = R.color.badge_cyan_icon
+            }
+            findPreference<ExpressiveSwitchPreference>("split_local_devices")?.apply {
+                badgeContainerColorRes = R.color.badge_pink_container
+                badgeIconColorRes = R.color.badge_pink_icon
+            }
+
+            SegmentedCardHelper.updateSegmentedPreferences(preferenceScreen)
 
             enableOffload.setOnPreferenceChangeListener { _, newValue ->
                 lifecycleScope.launch {

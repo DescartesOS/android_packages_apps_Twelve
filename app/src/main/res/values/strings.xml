@@ -47,6 +47,14 @@
     <string name="next_track">Next track</string>
     <string name="previous_track">Previous track</string>
 
+    <!-- Expressive Settings -->
+    <string name="made_for_you_header">Made for you</string>
+    <string name="made_for_you_title">Twelve — BitChord Edition</string>
+    <string name="made_for_you_subtitle">OxygenOS &amp; Material 3 Expressive</string>
+    <string name="made_for_you_desc">Bit-perfect audio playback, floating transport pill, and expressive segmented settings tailored for your device.</string>
+    <string name="reset_local_stats_summary">Clear playback history and local counters</string>
+    <string name="rescan_media_store_summary">Scan storage for newly added music</string>
+
     <!-- Unknown items -->
     <string name="album_unknown">Unknown album</string>
     <string name="artist_unknown">Unknown artist</string>
